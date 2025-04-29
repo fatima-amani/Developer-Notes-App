@@ -2,15 +2,15 @@ package main
 
 import (
 	"developer-notes/config"
+	"developer-notes/routes"
 
 	"github.com/gin-gonic/gin"
-	"honnef.co/go/tools/config"
 )
 
 func main() {
 	router := gin.New()
 	config.Connect()
-	routes.UserRoute(router)
+	routes.NotesRoute(router)
 
 	router.Run(":8080")
 

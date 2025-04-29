@@ -1,13 +1,19 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"github.com/lib/pq"
+	"gorm.io/gorm"
+)
 
 type Note struct {
-	ID        string    `json:"id"`         // UUID
-	UserID    string    `json:"user_id"`    // Reference to user
-	Title     string    `json:"title"`      // Note title
-	Content   string    `json:"content"`    // Note body
-	Tags      []string  `json:"tags"`       // Slice of tags
-	CreatedAt time.Time `json:"created_at"` // Timestamp
-	UpdatedAt time.Time `json:"updated_at"` // Timestamp
+	ID        string         `gorm:"type:uuid;primaryKey" json:"id"`
+	Username  string         `gorm:"index;not null" json:"user_name"`
+	Title     string         `gorm:"not null" json:"title"`
+	Content   string         `gorm:"type:text" json:"content"`
+	Tags      pq.StringArray `gorm:"type:text[]" json:"tags"` // Use pq.StringArray for Postgres array
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"` // Optional soft delete
 }

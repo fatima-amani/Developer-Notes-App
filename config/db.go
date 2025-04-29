@@ -1,7 +1,7 @@
 package config
 
 import (
-	"go-gin-rest-gorm/models"
+	"developer-notes/models"
 	"log"
 	"os"
 
@@ -24,6 +24,6 @@ func Connect() {
 		panic(err)
 	}
 
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.Note{})
 	DB = db
 }
