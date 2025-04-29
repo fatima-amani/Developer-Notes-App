@@ -1,0 +1,23 @@
+type Note {
+  id: ID!
+  user_name: String!
+  title: String!
+  content: String!
+  tags: [String!]!
+  created_at: String!
+  updated_at: String!
+}
+
+type Query {
+  notes: [Note!]!
+}
+
+type Mutation {
+  createNote(user_name: String!, title: String!, content: String!, tags: [String!]!): Note!
+  updateNote(id: ID!, title: String, content: String, tags: [String!]): Note!
+  deleteNote(id: ID!): Boolean!
+}
+
+type Subscription {
+  noteChanged: Note!
+}

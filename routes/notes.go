@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NotesRoute(router *gin.Engine) {
+func NotesRoute(router *gin.RouterGroup) {
 	router.GET("/", controller.GetNotes)
 	router.GET("/:id", controller.GetNote)
 	router.POST("/", controller.CreateNote)
